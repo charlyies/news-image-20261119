@@ -13,11 +13,11 @@ const MAX_BYTES = 1024 * 1024;
 const MAX_SIDE = 1024;
 const PNG_MAGIC = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
 
-function fail(message: string): never {
+function fail(message) {
   throw new Error(`news-image-20261119: ${message}`);
 }
 
-function readPngSize(bytes: Buffer): { width: number; height: number } {
+function readPngSize(bytes) {
   if (bytes.length < 33) {
     fail(`entry.png is only ${bytes.length} bytes, too short to hold an IHDR chunk`);
   }
@@ -34,7 +34,7 @@ function readPngSize(bytes: Buffer): { width: number; height: number } {
   };
 }
 
-function main(): void {
+function main() {
   const source = join(import.meta.dirname, "entry.png");
   const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
   const target = join(outDir, "entry.png");
